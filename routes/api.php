@@ -8,3 +8,4 @@ Route::get('/health', function () {
         'timestamp' => now(),
     ]);
 });
+// api health endpoint ---
