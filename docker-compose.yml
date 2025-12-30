@@ -29,7 +29,7 @@ services:
       MYSQL_PASSWORD: devops123
       MYSQL_ROOT_PASSWORD: root
 
-    cron:
+  cron:
     build:
       context: .
       dockerfile: Dockerfile.cron
@@ -39,4 +39,3 @@ services:
     depends_on:
       - app
       - db
-
