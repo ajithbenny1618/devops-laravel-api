@@ -1,0 +1,39 @@
+FROM php:8.2-cli
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    cron \
+    git \
+    unzip \
+    libonig-dev \
+    libxml2-dev \
+    libpng-dev
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring
+
+# Set working directory
+WORKDIR /var/www
+
+# Copy application code
+COPY . .
+
+# Install Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# Install PHP dependencies
+RUN composer install --no-dev --optimize-autoloader
+
+# Create cron job
+RUN echo "* * * * * php /var/www/artisan schedule:run >> /var/log/cron.log 2>&1" \
+    > /etc/cron.d/laravel-cron
+
+# Permissions
+RUN chmod 0644 /etc/cron.d/laravel-cron
+RUN crontab /etc/cron.d/laravel-cron
+
+# Create log file
+RUN touch /var/log/cron.log
+
+# Start cron in foreground
+CMD ["cron", "-f"]
