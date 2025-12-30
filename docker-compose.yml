@@ -28,3 +28,15 @@ services:
       MYSQL_USER: devops
       MYSQL_PASSWORD: devops123
       MYSQL_ROOT_PASSWORD: root
+
+    cron:
+    build:
+      context: .
+      dockerfile: Dockerfile.cron
+    container_name: laravel_cron
+    volumes:
+      - .:/var/www
+    depends_on:
+      - app
+      - db
+
