@@ -1,24 +1,66 @@
-*.log
-.DS_Store
+########################
+# Environment & Secrets
+########################
 .env
+.env.*
+!.env.example
 .env.backup
 .env.production
-.phpactor.json
-.phpunit.result.cache
-/.fleet
-/.idea
-/.nova
-/.phpunit.cache
-/.vscode
-/.zed
 /auth.json
+/storage/*.key
+
+########################
+# Logs & Cache
+########################
+*.log
+.phpunit.result.cache
+/.phpunit.cache
+
+########################
+# Dependencies
+########################
 /node_modules
+/vendor
+
+########################
+# Laravel Generated
+########################
 /public/build
 /public/hot
 /public/storage
-/storage/*.key
 /storage/pail
-/vendor
+
+########################
+# IDE & OS
+########################
+.DS_Store
+Thumbs.db
+/.vscode
+/.idea
+/.fleet
+/.nova
+/.zed
+.phpactor.json
+
+########################
+# Homestead
+########################
 Homestead.json
 Homestead.yaml
-Thumbs.db
+
+########################
+# Docker
+########################
+docker-compose.override.yml
+
+########################
+# Terraform (if used)
+########################
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+########################
+# Grafana (if local)
+########################
+grafana_data/

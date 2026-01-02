@@ -1,0 +1,12 @@
+groups:
+- name: container-alerts
+  rules:
+
+  - alert: ContainerDown
+    expr: up == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Container is down"
+      description: "A container has stopped responding for more than 30 seconds."

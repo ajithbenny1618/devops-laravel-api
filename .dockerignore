@@ -1,5 +1,59 @@
-.env
+########################
+# Git
+########################
 .git
+.gitignore
+
+########################
+# Environment & Secrets
+########################
+.env
+.env.*
+!.env.example
+
+########################
+# Dependencies
+########################
 node_modules
 vendor
+
+########################
+# Logs & Cache
+########################
+*.log
 storage/logs
+storage/framework/cache
+storage/framework/sessions
+storage/framework/views
+
+########################
+# Laravel build artifacts
+########################
+public/hot
+public/build
+
+########################
+# Tests & Docs
+########################
+tests
+docs
+
+########################
+# IDE & OS
+########################
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+
+########################
+# Docker
+########################
+docker-compose.override.yml
+
+########################
+# Terraform (if used)
+########################
+.terraform
+*.tfstate
+*.tfstate.backup

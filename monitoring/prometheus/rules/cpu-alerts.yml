@@ -1,0 +1,16 @@
+groups:
+- name: cpu-alerts
+  rules:
+  - alert: HighContainerCPU
+    expr: |
+      rate(container_cpu_usage_seconds_total[1m]) 
+      /
+      container_spec_cpu_quota
+      * container_spec_cpu_period
+      > 0.8
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High CPU usage in container"
+      description: "Container {{ $labels.container }} CPU usage > 80% for 2 minutes"

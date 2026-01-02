@@ -1,0 +1,15 @@
+groups:
+- name: memory-alerts
+  rules:
+  - alert: HighContainerMemory
+    expr: |
+      container_memory_usage_bytes
+      /
+      container_spec_memory_limit_bytes
+      > 0.85
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High memory usage in container"
+      description: "Container {{ $labels.container }} memory usage > 85%"
